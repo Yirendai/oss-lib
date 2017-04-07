@@ -1,0 +1,17 @@
+{
+  "accountNonExpired": false,
+  "accountNonLocked": false,
+  "authorities": [
+    "role"
+  ],
+  "credentialsNonExpired": false,
+  "enabled": false,
+  "password": "password",
+  "username": "type+id+meifans",
+  "properties": {
+    "tag": "one"
+  },
+  "timestamp": "2017-01-17T15:48:23.746+08:00",
+  "uuid": "uuid",
+  "id": "id"
+}

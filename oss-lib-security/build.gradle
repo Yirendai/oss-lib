@@ -1,0 +1,42 @@
+dependencies {
+  compile project(":oss-lib-errorhandle")
+
+  provided 'javax.servlet:javax.servlet-api'
+
+  compile 'org.springframework.boot:spring-boot-autoconfigure',
+    'org.springframework.security:spring-security-config',
+    'org.springframework.security:spring-security-core',
+    'org.springframework.security:spring-security-web'
+
+  optional project(":oss-lib-swagger")
+  if ("${springBootVersion}" >= "1.4.1") {
+    optional 'io.github.openfeign:feign-core'
+  } else {
+    optional 'com.netflix.feign:feign-core'
+  }
+  optional 'com.netflix.zuul:zuul-core',
+    'org.springframework.cloud:spring-cloud-commons',
+    'org.springframework.cloud:spring-cloud-context',
+    'org.springframework.cloud:spring-cloud-netflix-core',
+    'org.springframework.data:spring-data-commons',
+    'org.springframework.security.oauth:spring-security-oauth2',
+    'org.springframework:spring-oxm',
+    'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+
+  testCompile 'com.jayway.restassured:rest-assured',
+    'com.google.code.gson:gson',
+    'com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers',
+    'com.h2database:h2',
+    'com.zaxxer:HikariCP',
+    'org.springframework.boot:spring-boot-starter-actuator'
+  testCompile dependencies.create('org.springframework.boot:spring-boot-starter-data-jpa') {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+  }
+  testCompile 'org.springframework.boot:spring-boot-starter-jetty',
+    'org.springframework.boot:spring-boot-starter-log4j2',
+    'org.springframework.boot:spring-boot-starter-test',
+    'org.springframework.boot:spring-boot-starter-thymeleaf',
+    'org.springframework.boot:spring-boot-starter-web',
+    'org.springframework.security:spring-security-test'
+  //'org.springframework.security:spring-security-rsa'
+}

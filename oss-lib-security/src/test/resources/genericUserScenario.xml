@@ -1,0 +1,16 @@
+<genericUser>
+    <accountNonExpired>false</accountNonExpired>
+    <accountNonLocked>false</accountNonLocked>
+    <credentialsNonExpired>false</credentialsNonExpired>
+    <enabled>false</enabled>
+    <password>password</password>
+    <username>type+id+meifans</username>
+    <properties>
+        <tag>one</tag>
+    </properties>
+    <timestamp>2017-01-17T15:48:23.746+08:00</timestamp>
+    <uuid>uuid</uuid>
+    <authorities>
+        <authority>role</authority>
+    </authorities>
+</genericUser>

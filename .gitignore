@@ -10,3 +10,24 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+.mvn/
+*.iml
+.idea/
+.settings/
+bin/
+_site/
+.classpath
+.eclipse-pmd
+.project
+*.launch
+.springBeans
+.apt_generated
+.factorypath
+.profiler
+git.properties
+
+deprecated/
+**/src/site/markdown/README.md
+**/src/site/markdown/src/readme
+**/src/site/resources

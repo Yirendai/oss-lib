@@ -1,0 +1,35 @@
+
+# 样例配置
+hystrix:
+  command:
+    default:
+      execution:
+        timeout.enabled: true
+        isolation:
+          strategy: THREAD # 使用命令调用隔离方式,默认:采用线程隔离 *THREAD线程 SEMAPHORE信号
+          thread:
+            timeoutInMilliseconds: 1443 # 使用线程隔离时，调用超时时间，默认:1秒
+            interruptOnTimeout: true # 使用线程隔离时，是否对命令执行超时的线程调用中断（Thread.interrupt()）操作.默认:true
+          semaphore.maxConcurrentRequests: 10 # 使用信号量隔离时，命令调用最大的并发数,默认:10
+      fallback:
+        enabled: true # 是否开启fallback降级策略 默认:true
+        isolation.semaphore.maxConcurrentRequests: 10 # 使用信号量隔离时，命令fallback(降级)调用最大的并发数,默认:10
+      circuitBreaker:
+        enabled: true # 是否启用熔断器,默认true. 启动
+        requestVolumeThreshold: 20 # 熔断器在整个统计时间内是否开启的阀值，默认20秒。也就是10秒钟内至少请求20次，熔断器才发挥起作用
+        sleepWindowInMilliseconds: 5000 # 熔断器默认工作时间,默认:5秒.熔断器中断请求5秒后会进入半打开状态,放部分流量过去重试
+        errorThresholdPercentage: 50 # 默认:50%。当出错率超过50%后熔断器启动.
+        forceOpen: false # 是否强制开启熔断器阻断所有请求,默认:false,不开启
+        forceClosed: false # 是否允许熔断器忽略错误,默认false, 不开启
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+          numBuckets: 10
+        rollingPercentile:
+          enabled: true
+          timeInMilliseconds: 60000
+          bucketSize: 100
+      healthSnapshot.intervalInMilliseconds: 500
+      requestCache.enabled: true
+      requestLog.enabled: true
+

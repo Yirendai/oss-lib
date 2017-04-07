@@ -1,0 +1,37 @@
+
+logging.level.: ${LOGGING_LEVEL_:INFO}
+logging:
+  level:
+    com.yirendai: ${LOGGING_LEVEL_:INFO}
+    org.eclipse.jetty: ${LOGGING_LEVEL_:INFO}
+    org.springframework: ${LOGGING_LEVEL_:INFO}
+
+spring.application.name: application
+
+server:
+  address: ${app.address:0.0.0.0}
+  port: ${app.port:8080}
+  error:
+    includeStacktrace: ALWAYS #ON_TRACE_PARAM
+    whitelabel.enabled: true
+
+# THYMELEAF (ThymeleafAutoConfiguration)
+spring.thymeleaf:
+  cache: false # Enable template caching.
+  check-template-location: true # Check that the templates location exists.
+  content-type: text/html # Content-Type value.
+  enabled: true # Enable MVC Thymeleaf view resolution.
+  encoding: UTF-8 # Template encoding.
+#  excluded-view-names: # Comma-separated list of view names that should be excluded from resolution.
+#    - index
+#    - index.html
+  mode: HTML5 # Template mode to be applied to templates. See also StandardTemplateModeHandlers.
+  prefix: classpath:/templates/ # Prefix that gets prepended to view names when building a URL.
+  suffix: .html # Suffix that gets appended to view names when building a URL.
+  template-resolver-order: 1 # Order of the template resolver in the chain.
+  #view-names: # Comma-separated list of view names that can be resolved.
+
+app:
+  type: TEMPLATE
+  error:
+    handlerEnabled: false # experimental

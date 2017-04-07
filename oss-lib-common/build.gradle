@@ -1,0 +1,24 @@
+dependencies {
+  provided 'javax.servlet:javax.servlet-api'
+
+  compile 'com.fasterxml.jackson.core:jackson-databind',
+    'com.fasterxml.jackson.datatype:jackson-datatype-joda',
+    'commons-io:commons-io',
+    'commons-codec:commons-codec',
+    'org.bouncycastle:bcprov-jdk15on',
+    'org.codehaus.jackson:jackson-mapper-asl',
+    'org.springframework:spring-context',
+    'org.springframework:spring-expression',
+    'org.springframework:spring-oxm',
+    'org.springframework:spring-web'
+
+  optional 'com.google.code.gson:gson',
+    'com.fasterxml.jackson.module:jackson-module-jaxb-annotations',
+    'com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers',
+    'io.jsonwebtoken:jjwt',
+    'org.apache.httpcomponents:httpclient',
+    'org.springframework.boot:spring-boot',
+    'org.springframework.boot:spring-boot-autoconfigure',
+    'org.springframework.data:spring-data-commons',
+    'org.springframework.security:spring-security-core'
+}

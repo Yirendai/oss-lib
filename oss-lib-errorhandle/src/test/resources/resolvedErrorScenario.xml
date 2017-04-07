@@ -1,0 +1,24 @@
+<error>
+    <timestamp>201701031643</timestamp>
+    <status>401</status>
+    <error>error</error>
+    <exception>exception</exception>
+    <message>message</message>
+    <errors/>
+    <trace>trace</trace>
+    <path>path</path>
+    <datetime>datetime</datetime>
+    <headers>
+        <header>
+            <name>RESOLVED-ERROR</name>
+            <values>
+                <value>RESOLVED-ERROR</value>
+            </values>
+        </header>
+    </headers>
+    <localizedMessage>localizedMessage</localizedMessage>
+    <tracks>
+        <track>track1</track>
+        <track>track2</track>
+    </tracks>
+</error>

@@ -1,0 +1,15 @@
+<project>
+
+    <body>
+        <menu ref="parent" />
+        <menu name="DOCUMENTATION">
+            <item href="README.html" name="README" />
+            <item href="USER_GUIDE_FOR_RESTFUL.html" name="RestFul应用接入lib-security" />
+            <item href="USER_GUIDE_FOR_TEMPLATE.html" name="Template应用接入lib-security" />
+            <item href="ABOUT_ME.html" name="关于lib-security" />
+            <item href="CONTRIBUTION.html" name="相关阅读" />
+        </menu>
+        <menu ref="modules" />
+        <menu ref="reports" inherit="bottom" />
+    </body>
+</project>

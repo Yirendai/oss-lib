@@ -1,0 +1,8 @@
+dependencies {
+  compile project(":oss-lib-common")
+
+  compile 'de.codecentric:spring-boot-admin-starter-client:1.4.4'
+
+  optional 'org.springframework.cloud:spring-cloud-starter-eureka',
+    'org.springframework.cloud:spring-cloud-starter-config'
+}

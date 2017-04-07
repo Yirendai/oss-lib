@@ -1,0 +1,15 @@
+dependencies {
+  compile 'junit:junit',
+    'org.springframework:spring-web',
+    'org.springframework.boot:spring-boot'
+  if ("1.4.x" == "${springBootApi}") {
+    compile 'org.springframework.boot:spring-boot-test'
+  }
+
+  optional 'org.springframework.boot:spring-boot-autoconfigure'
+  if ("${springBootVersion}" >= "1.4.1") {
+    optional 'io.github.openfeign:feign-core'
+  } else{
+    optional 'com.netflix.feign:feign-core'
+  }
+}

@@ -1,0 +1,21 @@
+dependencies {
+  compile project(":oss-lib-common")
+
+  compile 'io.springfox:springfox-swagger-ui',
+    'io.springfox:springfox-swagger2',
+    'org.springframework:spring-webmvc'
+
+  runtime 'io.springfox:springfox-bean-validators',
+    dependencies.create('io.springfox:springfox-data-rest') {
+      exclude group: 'org.springframework.data', module: 'spring-data-rest-webmvc'
+    }
+
+  provided 'javax.servlet:javax.servlet-api'
+
+  optional 'org.springframework.boot:spring-boot-actuator',
+    'org.springframework.boot:spring-boot-autoconfigure',
+    'org.springframework.boot:spring-boot-devtools',
+    'org.springframework.security:spring-security-config',
+    'org.springframework.security:spring-security-web',
+    'org.springframework.cloud:spring-cloud-starter-feign'
+}

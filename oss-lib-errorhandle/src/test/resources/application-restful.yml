@@ -1,0 +1,24 @@
+
+logging.level.: ${LOGGING_LEVEL_:INFO}
+logging:
+  level:
+    com.yirendai: ${LOGGING_LEVEL_:INFO}
+    org.eclipse.jetty: ${LOGGING_LEVEL_:INFO}
+    org.springframework: ${LOGGING_LEVEL_:INFO}
+
+spring.application.name: application
+
+server:
+  address: ${app.address:0.0.0.0}
+  port: ${app.port:8080}
+  error:
+    includeStacktrace: ALWAYS #ON_TRACE_PARAM
+    whitelabel.enabled: false
+
+spring.thymeleaf:
+  enabled: false # Enable MVC Thymeleaf view resolution.
+
+app:
+  type: RESTFUL
+  error:
+    handlerEnabled: false # experimental

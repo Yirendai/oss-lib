@@ -1,0 +1,23 @@
+{
+  "timestamp": 201701031643,
+  "status": 401,
+  "error": "error",
+  "exception": "exception",
+  "message": "message",
+  "trace": "trace",
+  "path": "path",
+  "datetime": "datetime",
+  "headers": [
+    {
+      "name": "RESOLVED-ERROR",
+      "values": [
+        "RESOLVED-ERROR"
+      ]
+    }
+  ],
+  "localizedMessage": "localizedMessage",
+  "tracks": [
+    "track1",
+    "track2"
+  ]
+}

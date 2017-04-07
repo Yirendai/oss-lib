@@ -1,0 +1,5 @@
+dependencies {
+  optional 'org.springframework.boot:spring-boot-autoconfigure'
+
+  runtime 'org.jolokia:jolokia-core'
+}

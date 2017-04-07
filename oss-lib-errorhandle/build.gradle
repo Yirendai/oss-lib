@@ -1,0 +1,43 @@
+dependencies {
+  compile project(":oss-lib-webmvc")
+
+  provided 'javax.servlet:javax.servlet-api'
+
+  compile 'org.springframework:spring-tx',
+    'org.springframework:spring-webmvc'
+
+  optional 'org.springframework.boot:spring-boot-autoconfigure'
+  if ("${springBootVersion}" >= "1.4.1") {
+    optional 'io.github.openfeign:feign-core'
+  } else {
+    optional 'com.netflix.feign:feign-core'
+  }
+  optional 'org.springframework:spring-oxm'
+
+  // -Djavax.xml.bind.context.factory=org.eclipse.persistence.jaxb.JAXBContextFactory
+  //compile 'org.eclipse.persistence:eclipselink:2.6.3'
+  //compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.6.3'
+
+  //compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+  //runtime 'com.fasterxml.jackson.module:jackson-module-jaxb-annotations'
+
+  //runtime 'org.jvnet.jaxb2_commons:jaxb2-basics-runtime:1.11.1'
+  runtime 'org.jvnet.jaxb2_commons:jaxb2-namespace-prefix:1.1'
+
+  compile 'javax.validation:validation-api'
+  compile dependencies.create('org.hibernate:hibernate-validator') {
+    //exclude group: 'com.fasterxml', module: 'classmate'
+  }
+  runtime 'org.apache.tomcat.embed:tomcat-embed-el'
+
+  testCompile project(":oss-lib-test")
+  testCompile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml',
+    'org.codehaus.woodstox:woodstox-core-asl',
+    'com.google.code.gson:gson',
+    'com.jayway.restassured:rest-assured',
+    'org.springframework.boot:spring-boot-starter-jetty',
+    'org.springframework.boot:spring-boot-starter-log4j2',
+    'org.springframework.boot:spring-boot-starter-test',
+    'org.springframework.boot:spring-boot-starter-thymeleaf',
+    'org.springframework.boot:spring-boot-starter-web'
+}

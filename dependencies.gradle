@@ -1,0 +1,68 @@
+configure(allprojects) {
+}
+
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-idea'
+apply plugin: 'propdeps-eclipse'
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+  imports {
+    mavenBom "com.yirendai.oss:oss-common-dependencies-spring-boot-${springBootVersion}:${ossVersion}" // 下面的覆盖上面的
+    //mavenBom "org.apache.logging.log4j:log4j-bom:${log4jVersion}"
+  }
+  dependencies {
+  }
+}
+
+ext {
+  versionOverrides = [
+    'org.projectlombok:lombok': "${lombokVersion}",
+  ]
+
+  localRepo = System.getProperty("user.home") + '/.m2/repository'
+  libraries = [
+    jcache: [
+      'org.springframework:spring-context-support',
+      'javax.cache:cache-api',
+      'org.infinispan:infinispan-jcache',
+      'org.mapdb:mapdb',
+      'commons-io:commons-io'
+    ],
+    jsr303: [
+      'javax.validation:validation-api',
+      'org.hibernate:hibernate-validator',
+      'javax.el:javax.el-api',
+      'org.apache.tomcat.embed:tomcat-embed-el',
+    ],
+    jna: 'net.java.dev.jna:jna-platform:4.1.0',
+    // see: http://stackoverflow.com/questions/11345193/gradle-does-not-find-tools-jar
+    // see: http://stackoverflow.com/questions/23966858/gradle-jre-vs-jdk-please-add-lib-tools-jar-from-your-jdk
+    // see: http://stackoverflow.com/questions/9547170/in-gradle-how-do-i-declare-common-dependencies-in-a-single-place
+    jre_tools: files("${System.properties['java.home']}/../lib/tools.jar"),
+
+    restassured: 'com.jayway.restassured:rest-assured:2.4.1', // test
+    mockito_all: 'org.mockito:mockito-all:1.10.19', // test
+  ]
+}
+
+// def versionOverrides = [ 'groupId:artifactId': 'version' ]
+configurations.all {
+  exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+  exclude group: 'org.eclipse.jetty', module: 'jetty-jndi'
+  exclude group: 'org.eclipse.jetty', module: 'jetty-jsp'
+  exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+  exclude group: 'commons-logging', module: 'commons-logging'
+  exclude group: 'ch.qos.logback', module: 'logback-core'
+  exclude group: 'ch.qos.logback', module: 'logback-classic'
+  // see: http://stackoverflow.com/questions/9918568/gradle-exclude-a-dependency-for-a-configuration-but-not-for-an-inheriting-con
+
+  resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+    def overrideVersion = versionOverrides[details.requested.group + ":" + details.requested.name]
+    if (overrideVersion != null && details.requested.version != overrideVersion) {
+      logger.info "Overriding dependency ${details.requested.group}:${details.requested.name} version ${details.requested.version} --> $overrideVersion"
+      details.useVersion overrideVersion
+    }
+  }
+}

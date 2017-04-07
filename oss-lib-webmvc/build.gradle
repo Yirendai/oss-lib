@@ -1,0 +1,20 @@
+dependencies {
+  compile project(":oss-lib-common")
+
+  provided 'javax.servlet:javax.servlet-api'
+
+  compile 'io.jsonwebtoken:jjwt',
+    'org.springframework:spring-web',
+    'org.springframework:spring-webmvc'
+
+  optional 'org.springframework.boot:spring-boot-autoconfigure',
+    'org.eclipse.jetty:jetty-server',
+    'org.eclipse.jetty:jetty-servlets'
+  optional 'org.springframework.boot:spring-boot-devtools',
+    'com.google.code.gson:gson'
+
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
+  testCompile dependencies.create('org.springframework.boot:spring-boot-starter-data-jpa') {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+  }
+}

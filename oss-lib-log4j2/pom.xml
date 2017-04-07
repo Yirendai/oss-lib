@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yirendai.oss.lib</groupId>
+        <artifactId>oss-lib</artifactId>
+        <version>1.0.7.OSS-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>oss-lib-log4j2</artifactId>
+    <name>oss-lib-log4j2</name>
+    <url>https://github.com/Yirendai/oss-lib/tree/develop/oss-lib-log4j2</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+</project>

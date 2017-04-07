@@ -1,0 +1,97 @@
+
+app:
+  type: MIXED
+  #type: RESOURCE
+  security:
+    #authEntryPoint: loginPage # 401 | 403 | restful | loginPage
+    basePath: '/auth'
+    cookieKey: 'AES256_CBC16:YDD7uVFNpvkId8HWI6xTfOeRW3O6Wk3FDuGJdnGDhiD='
+    defaultTestUser: 'test_user'
+    enabled: true
+    jwtKey: 'HS512:Ve+/vU5u77+977+977+977+977+9Acu/77+977+977+9OXrvv71XH++/vRLvv73vv73vv73vv71577+9fQLvv73vv71eB++/vW7vv71g77+977+977+9L++/vWDvv73vv73vv71577+9VO+/ve+/vR3vv73vv73Coemfv++/ve+/vQ=='
+    loginKey: 'RSA1024_PAIR_PKCS1_X509:MIICWwIBAAKBgQCRXunHa+5hw+L39UZoIFhPwPR9gBvdlEvlXAH4biP+GNb8OH77OjMsfjfs3dXs3QqwXMajJUKZFpX1v+w/ilZ9muvty4/wfQlx5qy305Ui6mRqpIQKKxkwgAS+LTVCh+AeFWfB9G/OVA/khp73VQ3/IPoqgcPG+e/RD/kdFwTozwIDAQABAoGAALbYqzQqjaxqtxErcWOHS40FJoC0olgSL2ROViwkXSE+HSsh5JYankNYfv9wB6PmY4txJmgOdbYYsoZo4L8LQbzV02cEzAibAltvS8JUZ0XWNbnhRnSvY+GJ24hf1BHIJGjBnkQDK/XrDw8Xzt2bSDlWyWH4iEC7PgpghQpHRZECQQDB1GK0U3iDofSJkdLpypxWE6T6MBl7RJCOROj56cXIaVcamOKD1D+x+aDrP7wH2Crhn5X83cTDGekDEIzs0tHjAkEAv/+A4QP61ZgEKn+1gk7RHw/tWHBLWhb1EcIpShBNWx8sB4G8wI7brf858iLXl9NhROkcqYmbchG3D6SnYZmRJQJAR8kxBTgk2huRRaIMSyoO3JJJ95740P6Dyy0aW/SIm8Dn0aHtwoVJUdDyGC5ypTUaLJW+Jvi7dsaR1eC7ULqDoQJAHoSNRrbsOuEz4FF2V2URxl8wubr3rzUw9Qaoq3YV5aL5y6OqjeznLCwCWOOC40YdEuf+v0/5HlOEhn8Ef/X55QJAKktna3oDVsfsTH6REVLz8kjvhILJ5yk493/yjTZxpcpcVv8LGjuCKtIn3NdCRoeIC1K+oLzbBB6U+J8Uu5aeSA==:MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRXunHa+5hw+L39UZoIFhPwPR9gBvdlEvlXAH4biP+GNb8OH77OjMsfjfs3dXs3QqwXMajJUKZFpX1v+w/ilZ9muvty4/wfQlx5qy305Ui6mRqpIQKKxkwgAS+LTVCh+AeFWfB9G/OVA/khp73VQ3/IPoqgcPG+e/RD/kdFwTozwIDAQAB'
+    loginProcessingUrl: '/login'
+    loginPublicKeyUrl: '/login/rsaPublicKey'
+    logoutUrl: '/logout'
+    permited: '/permited/**'
+    testKey: 'KeyExpression'
+
+management:
+  context-path: '/management'
+  security: # see: ManagementWebSecurityConfigurerAdapter
+    enabled: true
+    roles: ADMIN # no ROLE_ prefix here
+    sessions: stateless
+
+security:
+  basic:
+    authorize-mode: role # role, authenticated, none
+    enabled: true
+    #path: '/**'
+    realm: 'Spring'
+  headers:
+    cache: true # Enable cache control HTTP headers.
+    content-type: true # Enable "X-Content-Type-Options" header.
+    frame: true # Enable "X-Frame-Options" header.
+    #hsts: # HTTP Strict Transport Security (HSTS) mode (none, domain, all).
+    xss: true # Enable cross site scripting (XSS) protection.
+  # see: SpringBootWebSecurityConfiguration
+  # default ignored: '/css/**,/js/**,/images/**,/webjars/**,/**/favicon.ico'
+  # override all default ignores except error controller
+  #ignored: '/css/**,/js/**,/images/**,/webjars/**,/**/favicon.ico'
+  enable-csrf: false # Enable Cross Site Request Forgery support.
+  sessions: stateless # Session creation policy (always, never, if_required, stateless).
+  user:
+    name: admin
+    password: ${SECURITY_USER_PASSWORD:admin_pass}
+    role: ADMIN
+
+server:
+  context-path: '/api'
+  error.includeStacktrace: ALWAYS
+  port: ${SERVER_PORT:8080}
+  session:
+    cookie:
+      comment: 'session cookie comment' # Comment for the session cookie.
+      domain: '' # Domain for the session cookie.
+      http-only: true # "HttpOnly" flag for the session cookie.
+      max-age: 3600 # Maximum age of the session cookie in seconds.
+      name: 'JSESSIONID' # Session cookie name.
+      path: '/' # Path of the session cookie.
+      #secure: false # "Secure" flag for the session cookie.
+    persistent: false # Persist session data between restarts.
+    #store-dir: '/tmp/sessions' # Directory used to store session data.
+    timeout: 120 # Session timeout in seconds.
+    tracking-modes: cookie # Session tracking modes (one or more of the following: "cookie", "url", "ssl").
+
+#spring.aop.auto: true # Add @EnableAspectJAutoProxy.
+# Whether subclass-based (CGLIB) proxies are to be created (true)
+# as opposed to standard Java interface-based proxies (false).
+#spring.aop.proxy-target-class: false
+
+spring.data.jpa.repositories.enabled: true
+spring.datasource:
+  continue-on-error: false # Do not stop if an error occurs while initializing the database.
+  platform: h2
+  name: dataSource
+  test-while-idle: true
+  time-between-eviction-runs-millis: 1
+  validation-query: 'SELECT 1'
+  type: 'com.zaxxer.hikari.HikariDataSource'
+  driver-class-name: 'org.h2.Driver'
+  url: 'jdbc:h2:mem:mydb' # 'jdbc:h2:~/data/lib-security/h2'
+  username: sa
+
+spring.h2.console:
+  enabled: true
+  path: '/h2-console'
+
+spring.jpa:
+  database: H2
+  database-platform: 'org.hibernate.dialect.H2Dialect'
+
+spring.thymeleaf:
+  enabled: false
+
+springfox.documentation.swagger.v1.path: '/swagger/v1'
+springfox.documentation.swagger.v2.path: '/swagger/v2'
